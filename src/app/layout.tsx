@@ -1,14 +1,11 @@
-import Providers from '@/components/layout/providers';
-import { Toaster } from '@/components/ui/sonner';
-import { fontVariables } from '@/lib/font';
-import ThemeProvider from '@/components/layout/ThemeToggle/theme-provider';
-import { cn } from '@/lib/utils';
-import type { Metadata, Viewport } from 'next';
-import { cookies } from 'next/headers';
-import NextTopLoader from 'nextjs-toploader';
-import { NuqsAdapter } from 'nuqs/adapters/next/app';
-import './globals.css';
-import './theme.css';
+import type { Metadata, Viewport } from "next";
+import { fontVariables } from "@/lib/font";
+import "./globals.css";
+import "./theme.css"
+import { ThemeProvider } from "@/components/layout/ThemeToggle/theme-provider";
+import { cn } from "@/lib/utils";
+import { cookies } from "next/headers";
+import { ActiveThemeProvider } from "@/components/active-theme";
 
 const META_THEME_COLORS = {
   light: '#ffffff',
@@ -25,16 +22,17 @@ export const viewport: Viewport = {
 };
 
 export default async function RootLayout({
-  children
-}: {
+  children,
+}: Readonly<{
   children: React.ReactNode;
-}) {
+}>) {
+
   const cookieStore = await cookies();
   const activeThemeValue = cookieStore.get('active_theme')?.value;
   const isScaled = activeThemeValue?.endsWith('-scaled');
 
   return (
-    <html lang='en' suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning>
       <head>
         <script
           dangerouslySetInnerHTML={{
@@ -56,21 +54,17 @@ export default async function RootLayout({
           fontVariables
         )}
       >
-        <NextTopLoader showSpinner={false} />
-        <NuqsAdapter>
-          <ThemeProvider
-            attribute='class'
-            defaultTheme='system'
+        <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
             enableSystem
             disableTransitionOnChange
             enableColorScheme
           >
-            <Providers activeThemeValue={activeThemeValue as string}>
-              <Toaster />
+            <ActiveThemeProvider initialTheme={activeThemeValue}>
               {children}
-            </Providers>
+            </ActiveThemeProvider>
           </ThemeProvider>
-        </NuqsAdapter>
       </body>
     </html>
   );

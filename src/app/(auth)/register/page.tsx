@@ -1,5 +1,7 @@
-export default function Page(){
-    return(
-        <h1>Hello register page</h1>
+export default function Page() {
+    return (
+        <h2 className="text-center text-2xl">
+            Register page
+        </h2>
     )
 }

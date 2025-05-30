@@ -1,0 +1,3 @@
+/* 
+    Code to fetch data from API
+*/

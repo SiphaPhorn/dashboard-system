@@ -1,5 +1,6 @@
 'use client';
-import { navItems } from '@/constants/data';
+
+import { appNavItems } from '@/constants/data';
 import {
   KBarAnimator,
   KBarPortal,
@@ -21,6 +22,10 @@ export default function KBar({ children }: { children: React.ReactNode }) {
     const navigateTo = (url: string) => {
       router.push(url);
     };
+
+    const navItems = appNavItems.flatMap(appNavItem => {
+      return appNavItem.navItems
+    })
 
     return navItems.flatMap((navItem) => {
       // Only include base action if the navItem has a real URL and is not just a container

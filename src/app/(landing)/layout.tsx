@@ -1,17 +1,16 @@
-
-import AppFooter from "@/components/layout/AppFooter"
 import { Navbar } from "@/components/layout/navbar"
+import FooterSection from "@/components/layout/sections/footer-section"
 
-export default function DashboardLayout({
+export default function LandingLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
   return (
     <div>
-        <Navbar/>
+        <Navbar />
         {children}
-        <AppFooter/>
+        <FooterSection />
     </div>
   )
 }

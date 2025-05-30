@@ -1,5 +1,7 @@
-export default function Page(){
-    return(
-        <h1>Hello contact page</h1>
+export default function Page() {
+    return (
+        <h1>
+            Contact Page
+        </h1>
     )
 }
