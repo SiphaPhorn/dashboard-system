@@ -42,6 +42,11 @@ export default function UserForm() {
 
   const form = useForm < z.infer < typeof formSchema >> ({
     resolver: zodResolver(formSchema),
+    defaultValues: {
+      id: "",
+      fullName: "",
+      gender: ""
+    }
 
   })
 
